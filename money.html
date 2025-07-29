@@ -1,0 +1,31 @@
+<style>
+body{
+background-color:202020;
+color:white;
+font-family: monospace;
+}
+</style>
+<script>
+let x =document.cookie;
+var todays_acc=0;
+var wage=15.42;
+function per_sec(){
+let oj = document.getElementById('oj');
+let display = document.getElementById('counter_round');
+let display_acc = document.getElementById('counter_acc');
+todays=Math.round(todays_acc+wage/60/60);
+todays_acc=todays_acc+wage/60/60;
+display.innerHTML="$"+todays;
+display_acc.innerHTML="$"+todays_acc;
+oj.style.opacity = todays/100;
+}
+setInterval(per_sec, 1000);
+
+
+</script>
+<h1 id="counter_round" style="font-size:100;padding:0px;margin:0px;">asd</h1>
+<h1 id="counter_acc" style="font-size:50;">asd</h1>
+<img id="oj" src="https://images2.pics4learning.com/catalog/j/juice.jpg">
+<img style="height:400px;float:left;" src="https://images.artsonia.com/art/137890158.jpg">
+<marquee>
+<img style="height:350px;bottom:0%;left:15%;" src="motivation.png"></marquee>
