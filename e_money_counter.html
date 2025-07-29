@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Money Counter</title>
+	</head>
+
+	<style>
+		body {
+			background-color: #000000;
+			color: #FFFFFF;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		button {
+			height: 20%;
+			width 25%;
+			border-radius: 15px;
+			padding: 20px;
+			font-size: 25px;
+			background-color: #A47DAB
+		}
+		div {
+			text-align: center;
+		}
+	</style>
+
+
+	<body>
+		 <script>
+			let myInterval;
+			var time =0;
+			var todays_acc=0;
+			var todays =0.0;
+			var wage=15.38;
+			function per_sec(){
+				time+=1;
+				let display = document.getElementById('counter_round');
+				todays_acc=(todays_acc+wage/3600);
+				if(todays_acc > 0.01){
+					todays=Math.round((todays_acc+wage/3600) * 100) /100;
+					display.innerHTML="$"+todays;
+				}
+				document.getElementById('work_time').innerHTML=time + " seconds";
+			}
+
+			function startDay() {
+				const date = new Date();
+				todays_acc = 0;
+
+				document.getElementById('counter_round').innerHTML="$0.00";
+
+				document.getElementById('work_title').style.color = "#4CBB17";
+				document.getElementById('work_title').innerHTML="Working!";
+
+				document.getElementById('work_start_time').innerHTML="Starting working at: " + date.toLocaleTimeString();
+				document.getElementById('work_stop_time').innerHTML="";
+
+				document.getElementById('work_time').innerHTML="0 seconds";
+				
+				myInterval = setInterval(per_sec, 1000);
+			}
+			function endDay() {
+				const date = new Date();
+
+				document.getElementById('work_title').style.color = "#FF2800";
+				document.getElementById('work_title').innerHTML="Not working :(";
+	
+				document.getElementById('work_stop_time').innerHTML="Stoped working at: " + date.toLocaleTimeString();
+
+				clearInterval(myInterval);
+			}
+		</script>
+		<div>
+			<h1 id="counter_round">$0.00</h1>
+			<h2 id="work_title" style="font-size:19px; color: #FF2800">Not working :(</h2>
+      
+			<h3 id="work_time">0 seconds</h3>
+			<h3 id="work_start_time"></h3>
+			<h3 id="work_stop_time"></h3>
+			
+		</div>
+		<div id="buttons">
+			<button type="button" onclick="startDay()">Click to start the day!</button>
+			<button type="button" onclick="endDay()">Click to end the day!</button>
+		</div>
+	</body>
+</html>
