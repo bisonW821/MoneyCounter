@@ -1,8 +1,7 @@
 let panic = document.getElementById("panic_button")
 var todays_acc=0;
-var wage=15.42;
-var mil_wage = wage/60/60/1000
-
+var wage=15.54;
+var mil_wage = wage/3600000
 var time = new Date();
 var one = new  Date(time.setHours(13));
 var one1 = new Date(one.setMinutes(0));
@@ -25,10 +24,10 @@ function convertMillisecondsToHMS(milliseconds) {
 function per_sec(){
     var time = new Date();
     let down=240
-    if(time.getHours()*60*60*1000>46800000){down=180;one1.setHours(16);}
+    if(time.getHours()>=13){down=180;one1.setHours(16)}
 
     var timer = ((one1-time)/1000/60)/down;
-
+    if(time.getHours()>=16){timer=1}
     let bar = document.getElementById("progress");
     let clock  = document.getElementById("time");
     let clock2  = document.getElementById("time2");
@@ -38,9 +37,6 @@ function per_sec(){
     clock2.innerHTML=time.toLocaleTimeString();
     todays_acc= mil_wage*(time.getTime()-nine);
     todays=Math.round(todays_acc*100)/100;
-    // old todays_acc=todays_acc+wage/60/60;
-
-    console.log(nine)
 
     display.innerHTML="$"+todays;
     display_acc.innerHTML="$"+todays_acc;
